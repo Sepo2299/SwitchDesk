@@ -10,10 +10,13 @@ from .database import Base, engine, get_db
 from .models import User, Ticket, Comment, TicketEvent
 from .schemas import Register, Login, UserOut, TicketCreate, TicketUpdate, TicketOut, CommentCreate, CommentOut
 from .security import hash_password, verify_password, create_token, current_user
+from .bootstrap import create_initial_admin
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(engine)
+    with Session(engine) as db:
+        create_initial_admin(db)
     yield
 
 app = FastAPI(title="SwitchDesk API", version="1.0", lifespan=lifespan)

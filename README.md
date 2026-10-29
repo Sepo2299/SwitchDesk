@@ -181,6 +181,10 @@ SwitchDesk/
   SHARING.md
 ~~~
 
+## Hosted deployment
+
+The project includes a Docker image and Render Blueprint for hosting the website, Python API, and PostgreSQL database together. See [HOSTING.md](HOSTING.md) for deployment settings and first-admin sign-in. The hosted build uses a private administrator password rather than the local sample accounts.
+
 ## API documentation
 
 With the backend running, open **http://127.0.0.1:8000/docs** for the interactive API documentation.

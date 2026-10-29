@@ -23,3 +23,41 @@ jobs:
         working-directory: frontend
       - run: npm run build
         working-directory: frontend
+  container:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: switchdesk_test
+          POSTGRES_USER: switchdesk
+          POSTGRES_PASSWORD: switchdesk_ci_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U switchdesk -d switchdesk_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      SMOKE_ADMIN_EMAIL: admin@example.com
+      SMOKE_ADMIN_PASSWORD: CI-Private-Password-12345
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t switchdesk:ci .
+      - name: Start hosted image with PostgreSQL
+        run: >-
+          docker run --detach --name switchdesk --network host
+          -e DATABASE_URL=postgresql://switchdesk:switchdesk_ci_password@127.0.0.1:5432/switchdesk_test
+          -e SECRET_KEY=ci-only-signing-key-at-least-32-characters-long
+          -e BOOTSTRAP_ADMIN_EMAIL="$SMOKE_ADMIN_EMAIL"
+          -e BOOTSTRAP_ADMIN_PASSWORD="$SMOKE_ADMIN_PASSWORD"
+          switchdesk:ci
+      - name: Verify hosted page and first sign-in
+        run: python3 backend/tests/hosting_smoke.py --record "$RUNNER_TEMP/switchdesk-ticket.json"
+      - run: docker restart switchdesk
+      - name: Verify records survive restart
+        run: python3 backend/tests/hosting_smoke.py --verify --record "$RUNNER_TEMP/switchdesk-ticket.json"
+      - name: Container logs on failure
+        if: failure()
+        run: docker logs switchdesk

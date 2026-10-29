@@ -1,0 +1,14 @@
+.git
+.tools
+**/node_modules
+**/.venv
+**/dist
+**/__pycache__
+**/.pytest_cache
+**/.env
+**/.env.*
+**/.dev-secret
+**/*.db
+**/*.db-*
+**/*.pyc
+**/*.tsbuildinfo

@@ -124,3 +124,52 @@ def test_missing_forged_expired_and_incomplete_tokens_are_rejected(client):
         token = jwt.encode(claims, key, algorithm='HS256')
         assert client.get('/api/me', headers={'Authorization': 'Bearer '+token}).status_code == 401
     assert client.post('/api/auth/login', json={'email': 'person@example.com', 'password': 'wrong'}).status_code == 401
+
+
+def test_hosted_admin_is_created_once_without_resetting_password(client, monkeypatch):
+    from app.bootstrap import create_initial_admin
+    from app.security import verify_password
+    monkeypatch.setenv('BOOTSTRAP_ADMIN_EMAIL', ' Admin@switchdesk.local ')
+    monkeypatch.setenv('BOOTSTRAP_ADMIN_PASSWORD', 'FirstPrivatePassword123!')
+    with SessionLocal() as db:
+        create_initial_admin(db)
+        admin = db.query(User).filter_by(email='admin@switchdesk.local').one()
+        assert admin.role == 'admin'
+        assert verify_password('FirstPrivatePassword123!', admin.password_hash)
+        original_hash = admin.password_hash
+        monkeypatch.setenv('BOOTSTRAP_ADMIN_PASSWORD', 'DifferentPrivatePassword456!')
+        create_initial_admin(db)
+        db.refresh(admin)
+        assert admin.password_hash == original_hash
+        assert db.query(User).count() == 1
+
+
+def test_bootstrap_rejects_incomplete_weak_or_existing_employee_credentials(client, monkeypatch):
+    from app.bootstrap import create_initial_admin
+    monkeypatch.delenv('BOOTSTRAP_ADMIN_EMAIL', raising=False)
+    monkeypatch.delenv('BOOTSTRAP_ADMIN_PASSWORD', raising=False)
+    with SessionLocal() as db:
+        create_initial_admin(db)
+        assert db.query(User).count() == 0
+        monkeypatch.setenv('BOOTSTRAP_ADMIN_EMAIL', 'person@example.com')
+        with pytest.raises(RuntimeError, match='Set both'):
+            create_initial_admin(db)
+        monkeypatch.setenv('BOOTSTRAP_ADMIN_PASSWORD', 'short')
+        with pytest.raises(RuntimeError, match='12 characters'):
+            create_initial_admin(db)
+        register(client)
+        monkeypatch.setenv('BOOTSTRAP_ADMIN_PASSWORD', 'PrivatePassword123!')
+        with pytest.raises(RuntimeError, match='non-administrator'):
+            create_initial_admin(db)
+        assert db.query(User).one().role == 'employee'
+
+
+@pytest.mark.parametrize('source,expected', [
+    ('postgres://user:password@db:5432/app', 'postgresql+psycopg://user:password@db:5432/app'),
+    ('postgresql://user:password@db:5432/app', 'postgresql+psycopg://user:password@db:5432/app'),
+    ('postgresql+psycopg://user:password@db/app', 'postgresql+psycopg://user:password@db/app'),
+    ('sqlite://', 'sqlite://'),
+])
+def test_host_database_urls_use_the_installed_driver(source, expected):
+    from app.database import normalize_database_url
+    assert normalize_database_url(source) == expected

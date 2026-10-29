@@ -15,7 +15,7 @@ from app.main import app
 def run():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--host", default="0.0.0.0")
-    parser.add_argument("--port", type=int, default=5174)
+    parser.add_argument("--port", type=int, default=int(os.getenv("PORT", "5174")))
     options = parser.parse_args()
     if not (FRONTEND / "index.html").is_file():
         parser.error("Build the frontend first: cd frontend, then npm.cmd run build")

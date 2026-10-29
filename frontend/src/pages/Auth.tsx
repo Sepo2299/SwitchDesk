@@ -89,7 +89,7 @@ export function Auth({
             {register ? 'Sign in' : 'Create an account'}
           </button>
         </p>
-        <details className="demo">
+        {import.meta.env.VITE_SHOW_DEMO_ACCESS !== 'false' && <details className="demo">
           <summary>Exploring the local demo?</summary>
           <p>Seed the local database first. Choose a role to fill its demo credentials.</p>
           <div>
@@ -103,7 +103,7 @@ export function Auth({
               <ArrowUpRight size={13} />
             </button>)}
           </div>
-        </details>
+        </details>}
       </div>
       <footer><ShieldCheck size={14} /> Your access follows your role. Your work stays organized.</footer>
     </section>
