@@ -25,7 +25,7 @@ if (!await healthy(origin)) {
     if (!existsSync(python) || !existsSync(resolve(root, 'frontend/dist/index.html'))) {
       throw new Error('Complete the backend setup and npm.cmd run build first.');
     }
-    console.log('Starting the website and API for internet sharingâ€¦');
+    console.log('Starting the website and API for internet sharing…');
     startedServer = spawn(python, ['serve.py', '--host', '127.0.0.1', '--port', '5175'], {
       cwd: backend, stdio: 'inherit', windowsHide: true,
     });
@@ -50,7 +50,7 @@ const tools = resolve(root, '.tools');
 const executable = resolve(tools, 'cloudflared.exe');
 if (!existsSync(executable)) {
   await mkdir(tools, { recursive: true });
-  console.log('Downloading the official Cloudflare connector (first run only)â€¦');
+  console.log('Downloading the official Cloudflare connector (first run only)…');
   const response = await fetch('https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-windows-amd64.exe');
   if (!response.ok || !response.body) throw new Error(`Download failed: HTTP ${response.status}`);
   const temporary = resolve(tools, 'cloudflared.download');

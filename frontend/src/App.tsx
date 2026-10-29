@@ -151,7 +151,7 @@ export default function App() {
   if (boot) return <div className="boot">
     <Brand />
     <Loader2 className="spin" />
-    <p>Getting your workspace readyâ€¦</p>
+    <p>Getting your workspace ready…</p>
   </div>;
   if (!user) return <>
     {notice && <div className="toast" role="status">
@@ -238,7 +238,7 @@ export default function App() {
           <div className="global-search">
             <label>
               <Search size={16} />
-              <input ref={searchRef} aria-label="Search workspace" placeholder="Find a ticketâ€¦" value={globalQuery} onChange={e => setGlobalQuery(e.target.value)} onKeyDown={e => {
+              <input ref={searchRef} aria-label="Search workspace" placeholder="Find a ticket…" value={globalQuery} onChange={e => setGlobalQuery(e.target.value)} onKeyDown={e => {
                 if (e.key === 'Escape') setGlobalQuery('');
                 if (e.key === 'Enter') {
                   setQuery(globalQuery);
@@ -288,10 +288,10 @@ export default function App() {
           {error}
           <button onClick={() => void refresh()}>Try again <ArrowRight size={14} /></button>
         </div>}
-        <Suspense fallback={<div className="skeleton" role="status"><Loader2 className="spin"/><p>Opening your workspaceâ€¦</p></div>}>
+        <Suspense fallback={<div className="skeleton" role="status"><Loader2 className="spin"/><p>Opening your workspace…</p></div>}>
 {loading && !tickets.length ? <div className="skeleton" role="status">
           <Loader2 className="spin" />
-          <p>Loading your requestsâ€¦</p>
+          <p>Loading your requests…</p>
         </div> : page === 'overview' ? <Overview tickets={tickets} analytics={analytics} user={user} onSelect={setSelected} onNew={() => setNewOpen(true)} onAll={() => go('tickets')} /> : page === 'tickets' ? <Tickets tickets={tickets} onSelect={setSelected} onNew={() => setNewOpen(true)} query={query} setQuery={setQuery} /> : page === 'knowledge' ? <Knowledge onNew={() => setNewOpen(true)} /> : page === 'insights' ? <Insights analytics={analytics} /> : page === 'team' && staff(user) ? <>
           <div className="page-heading">
             <div>

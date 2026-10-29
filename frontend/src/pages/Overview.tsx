@@ -25,7 +25,7 @@ export function Overview({
       <div>
         <span className="eyebrow">THE BIG PICTURE</span>
         <h1>Good things start with support<span>.</span></h1>
-        <p>Welcome back, {user.name.split(' ')[0]}. Hereâ€™s your workspace at a glance.</p>
+        <p>Welcome back, {user.name.split(' ')[0]}. Here’s your workspace at a glance.</p>
       </div>
       <button className="btn primary" onClick={onNew}><Plus size={17} /> New ticket</button>
     </div>
@@ -36,7 +36,7 @@ export function Overview({
       <div>
         <strong>A clearer queue. A calmer day.</strong>
         <p>
-          {queue.length ? tickets.filter(active).length + ' active requests need attention. Letâ€™s keep things moving.' : 'Your queue is clear. Youâ€™re ready for whatever comes next.'}
+          {queue.length ? tickets.filter(active).length + ' active requests need attention. Let’s keep things moving.' : 'Your queue is clear. You’re ready for whatever comes next.'}
         </p>
       </div>
       <button onClick={onAll}>View queue <ArrowRight size={16} /></button>

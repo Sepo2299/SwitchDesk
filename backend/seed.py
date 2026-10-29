@@ -56,10 +56,10 @@ def seed_database():
                     db.add(TicketEvent(ticket_id=ticket.id, actor_id=users[0].id, kind="updated", description=f"Assigned to {users[assignee].name}", created_at=created+timedelta(minutes=15)))
                 if status != "Open":
                     changed = created + timedelta(hours=1)
-                    db.add(TicketEvent(ticket_id=ticket.id, actor_id=users[assignee].id, kind="resolved" if status in ("Resolved", "Closed") else "updated", description=f"Status: Open â†’ {status}", created_at=changed))
+                    db.add(TicketEvent(ticket_id=ticket.id, actor_id=users[assignee].id, kind="resolved" if status in ("Resolved", "Closed") else "updated", description=f"Status: Open → {status}", created_at=changed))
                     ticket.updated_at = changed
                 if index == 0:
-                    db.add(Comment(ticket_id=ticket.id, author_id=users[1].id, body="Iâ€™m checking the VPN gateway and the affected user connections. Please add the exact error text if it changes.", created_at=created+timedelta(minutes=45)))
+                    db.add(Comment(ticket_id=ticket.id, author_id=users[1].id, body="I’m checking the VPN gateway and the affected user connections. Please add the exact error text if it changes.", created_at=created+timedelta(minutes=45)))
                     db.add(TicketEvent(ticket_id=ticket.id, actor_id=users[1].id, kind="commented", description="Added an update to the discussion", created_at=created+timedelta(minutes=45)))
         db.commit()
     print("Demo ready. Existing users, passwords, and tickets were preserved.")

@@ -92,9 +92,9 @@ def update_ticket(ticket_id: int, data: TicketUpdate, db: Session = Depends(get_
         if key == "assigned_to":
             old_name = db.get(User, previous).name if previous else "Unassigned"
             new_name = db.get(User, value).name if value else "Unassigned"
-            description = f"Assignment: {old_name} â†’ {new_name}"
+            description = f"Assignment: {old_name} → {new_name}"
         else:
-            description = f"{key.capitalize()}: {previous} â†’ {value}"
+            description = f"{key.capitalize()}: {previous} → {value}"
         kind = "resolved" if key == "status" and value in ("Resolved", "Closed") and previous not in ("Resolved", "Closed") else "updated"
         db.add(TicketEvent(ticket_id=ticket.id, actor_id=user.id, kind=kind, description=description))
         setattr(ticket, key, value)

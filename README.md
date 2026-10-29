@@ -87,7 +87,7 @@ On macOS/Linux, use python3 -m venv .venv, .venv/bin/python, and cp .env.example
 | Employee | sam@switchdesk.local | Employee123! |
 | Technician | mia@switchdesk.local | Tech12345! |
 
-Open â€œExploring the local demo?â€ on the sign-in screen to fill a role's credentials. These are deliberately public local demo accounts. Demo seeding is disabled when APP_ENV=production. Never deploy demo accounts publicly.
+Open “Exploring the local demo?” on the sign-in screen to fill a role's credentials. These are deliberately public local demo accounts. Demo seeding is disabled when APP_ENV=production. Never deploy demo accounts publicly.
 
 seed.py creates missing demo users, preserves existing passwords and records, and adds twelve sample tickets only to a completely empty users-and-tickets database. Sample timestamps are relative to the first seed run. Charts query those stored records; they do not display invented weekly numbers. Existing imported tickets get a clearly labeled creation entry; earlier changes cannot be reconstructed.
 
@@ -120,7 +120,7 @@ The browser stores the token in sessionStorage. Logout clears the token and inte
 
 - Resolution rate: tickets currently Resolved or Closed divided by all visible tickets.
 - Created series: tickets whose creation date falls on each of the last seven UTC dates.
-- Resolved series: recorded transitions from Open/In Progress into Resolved/Closed. Resolved â†’ Closed does not add a second event. Reopening and resolving again does add a new event, so this measures resolution activity rather than unique tickets.
+- Resolved series: recorded transitions from Open/In Progress into Resolved/Closed. Resolved → Closed does not add a second event. Reopening and resolving again does add a new event, so this measures resolution activity rather than unique tickets.
 - Unassigned: active tickets with no assignee.
 
 Dates in ticket details use the visitor's local timezone; chart date buckets use UTC. Demo data is identified here and is stored in the database. Knowledge articles are curated static content and require no third-party API.

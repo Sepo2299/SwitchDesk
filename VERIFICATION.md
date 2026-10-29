@@ -19,4 +19,4 @@ Vite required preserveSymlinks in this restricted Windows checkout because a rea
 
 Browser automation timed out, and a separate preview probe was denied localhost access. Consequently, this delivery does not claim a completed visual browser or mobile device audit. Responsive layouts, keyboard navigation, focus handling, and reduced-motion styles are implemented, but should still receive a manual browser check using the README and demo guide.
 
-The supplied GitHub Actions workflow is included for verification after pushing the project. Its remote run has not been performed here. This package has not been submitted to the organizers or published to a hosting service.
+GitHub Actions passed the frontend build and backend integration suite on commit 8393af293ecc22353d6ce015e0c95017f13fb4a8. Run: https://github.com/Sepo2299/SwitchDesk/actions/runs/40922799886 . Later pushes run the same workflow automatically. The repository is https://github.com/Sepo2299/SwitchDesk . The project has not been submitted to the organizers or deployed to independent hosting.

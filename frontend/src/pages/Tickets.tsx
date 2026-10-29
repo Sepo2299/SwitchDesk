@@ -56,7 +56,7 @@ export function Tickets({
       <div className="toolbar">
         <label className="search">
           <Search size={17} />
-          <input aria-label="Search tickets" value={query} onChange={e => setQuery(e.target.value)} placeholder="Search subject, ticket ID, or personâ€¦" />
+          <input aria-label="Search tickets" value={query} onChange={e => setQuery(e.target.value)} placeholder="Search subject, ticket ID, or person…" />
           {query && <button onClick={() => setQuery('')} aria-label="Clear search">
             <X size={14} />
           </button>}
@@ -104,14 +104,14 @@ export function Tickets({
             <footer>
               <Badge value={t.priority} />
               <span className="avatar tiny" title={t.assignee_name || 'Unassigned'}>
-                {t.assignee_name ? initials(t.assignee_name) : 'â€”'}
+                {t.assignee_name ? initials(t.assignee_name) : '—'}
               </span>
             </footer>
           </button>)}
           {!filtered.some(t => t.status === s) && <p className="board-empty">No tickets here</p>}
         </section>)}
       </div> : <TicketTable tickets={filtered} onSelect={onSelect} />}
-      <div className="table-footer">Showing {filtered.length} of {tickets.length} requests <span>Newest first Â· Export follows your filters</span></div>
+      <div className="table-footer">Showing {filtered.length} of {tickets.length} requests <span>Newest first · Export follows your filters</span></div>
     </section>
   </>;
 }

@@ -30,14 +30,14 @@ export function NewTicketDialog({
       setBusy(false);
     }
   }
-  return <Dialog title="Letâ€™s get this sorted." onClose={onClose}>
+  return <Dialog title="Let’s get this sorted." onClose={onClose}>
     <p className="muted">A few details now help us find the right fix faster.</p>
     <form onSubmit={submit} className="ticket-form">
       <label>What do you need help with?<input autoFocus required minLength={5} maxLength={150} value={d.title} onChange={e => setD({
           ...d,
           title: e.target.value
         })} placeholder="e.g. Unable to connect to the office Wi-Fi" /></label>
-      <label>Tell us whatâ€™s happening<textarea required minLength={10} maxLength={5000} rows={5} value={d.description} onChange={e => setD({
+      <label>Tell us what’s happening<textarea required minLength={10} maxLength={5000} rows={5} value={d.description} onChange={e => setD({
           ...d,
           description: e.target.value
         })} placeholder="What happened? Who is affected? What have you already tried?" /><small>Keep passwords and private credentials out of your ticket.</small></label>
@@ -70,7 +70,7 @@ export function NewTicketDialog({
         <button type="button" className="btn secondary" onClick={onClose}>Cancel</button>
         <button className="btn primary" disabled={busy}>
           {busy ? <Loader2 className="spin" size={16} /> : <Plus size={16} />}
-          {busy ? 'Creatingâ€¦' : 'Create ticket'}
+          {busy ? 'Creating…' : 'Create ticket'}
         </button>
       </div>
     </form>
@@ -139,7 +139,7 @@ export function Detail({
       </h2>
       <p>Reported by <strong>
           {ticket.creator_name}
-        </strong> Â· {time(ticket.created_at)} Â· {ticket.category}</p>
+        </strong> · {time(ticket.created_at)} · {ticket.category}</p>
     </div>
     <div className="detail-grid">
       <div>
@@ -153,7 +153,7 @@ export function Detail({
             </span></button>
           <button className={tab === 'history' ? 'selected' : ''} onClick={() => setTab('history')}><Clock3 size={15} /> History</button>
         </div>
-        {loading ? <p className="muted">Loading conversationâ€¦</p> : tab === 'discussion' ? <>
+        {loading ? <p className="muted">Loading conversation…</p> : tab === 'discussion' ? <>
           <div className="comments">
             {comments.length ? comments.map(c => <article key={c.id}>
               <span className="avatar">
@@ -175,11 +175,11 @@ export function Detail({
           <form onSubmit={comment}>
             <label>
               <span className="sr-only">Your comment</span>
-              <textarea required minLength={1} maxLength={2000} rows={3} value={body} onChange={e => setBody(e.target.value)} placeholder="Share an update or ask a questionâ€¦" />
+              <textarea required minLength={1} maxLength={2000} rows={3} value={body} onChange={e => setBody(e.target.value)} placeholder="Share an update or ask a question…" />
             </label>
             <button className="btn primary" disabled={busy || !body.trim()}>
               <MessageSquare size={15} />
-              {busy ? 'Savingâ€¦' : 'Post update'}
+              {busy ? 'Saving…' : 'Post update'}
             </button>
           </form>
         </> : <ol className="timeline">

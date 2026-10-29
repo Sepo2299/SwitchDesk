@@ -10,7 +10,7 @@ export const articles = [{
   category: 'Access',
   title: 'Request the access you need',
   summary: 'Make permission requests clear, specific, and easy to approve.',
-  steps: ['Identify the exact system, shared folder, or resource you need.', 'Describe the business reason and level of access required.', 'Include your department and relevant managerâ€™s name.', 'Create an Access ticket. Never include passwords or authentication codes.']
+  steps: ['Identify the exact system, shared folder, or resource you need.', 'Describe the business reason and level of access required.', 'Include your department and relevant manager’s name.', 'Create an Access ticket. Never include passwords or authentication codes.']
 }, {
   category: 'Software',
   title: 'When an application stops working',
@@ -18,14 +18,14 @@ export const articles = [{
   steps: ['Save your work if possible, then close and reopen the application.', 'Record the application name, version, and exact error message.', 'Check whether the issue affects one file or the whole application.', 'Create a Software ticket describing what happened and what you already tried.']
 }, {
   category: 'Hardware',
-  title: 'A printer that wonâ€™t cooperate',
+  title: 'A printer that won’t cooperate',
   summary: 'Simple checks before raising a hardware request.',
-  steps: ['Check that the printer is powered on and connected.', 'Confirm that the correct printer is selected and check the print queue.', 'Look for paper or toner warnings. Follow the manufacturerâ€™s safe handling guidance.', 'Create a Hardware ticket with the printer location and displayed error.']
+  steps: ['Check that the printer is powered on and connected.', 'Confirm that the correct printer is selected and check the print queue.', 'Look for paper or toner warnings. Follow the manufacturer’s safe handling guidance.', 'Create a Hardware ticket with the printer location and displayed error.']
 }, {
   category: 'Other',
   title: 'Write a ticket that gets results',
   summary: 'A good report is the first step toward a quick resolution.',
-  steps: ['Use a short, specific title: â€œOutlook wonâ€™t sync new messagesâ€ beats â€œHelpâ€.', 'Explain the impact: who is affected and what work is blocked.', 'Include when it started, any error text, and steps you already tried.', 'Choose a priority that reflects the impact. Critical is for severe, widespread disruption.']
+  steps: ['Use a short, specific title: “Outlook won’t sync new messages” beats “Help”.', 'Explain the impact: who is affected and what work is blocked.', 'Include when it started, any error text, and steps you already tried.', 'Choose a priority that reflects the impact. Critical is for severe, widespread disruption.']
 }, {
   category: 'Access',
   title: 'Keep your account in safe hands',
@@ -53,10 +53,10 @@ export function Knowledge({
     <div className="knowledge-hero">
       <BookOpen size={28} />
       <h2>The first place to find your fix.</h2>
-      <p>Start with a quick guide. Weâ€™re here if you need more.</p>
+      <p>Start with a quick guide. We’re here if you need more.</p>
       <label className="search">
         <Search size={18} />
-        <input aria-label="Search help articles" value={q} onChange={e => setQ(e.target.value)} placeholder="Search Wi-Fi, access, softwareâ€¦" />
+        <input aria-label="Search help articles" value={q} onChange={e => setQ(e.target.value)} placeholder="Search Wi-Fi, access, software…" />
       </label>
     </div>
     <div className="article-grid">

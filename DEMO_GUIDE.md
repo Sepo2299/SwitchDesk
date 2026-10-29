@@ -44,4 +44,4 @@ History is append-only through the application API, not a tamper-proof audit sys
 
 Push the complete source to your own GitHub repository. Keep `.env`, `.dev-secret`, databases, virtual environments, and node_modules out of Git. Add the two reviewers named in the original challenge using verified GitHub usernames. Do not assume an email address is a GitHub username. Test the README from a clean checkout, inspect the final changes, and rehearse this walkthrough yourself.
 
-The PDF labels the deadline â€œFriday, 31 October 2026â€; the numerical date falls on a Saturday. Confirm the intended deadline with the organizer if this affects submission timing.
+The PDF labels the deadline “Friday, 31 October 2026”; the numerical date falls on a Saturday. Confirm the intended deadline with the organizer if this affects submission timing.
