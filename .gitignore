@@ -1,0 +1,13 @@
+.env
+.dev-secret
+*.db
+*.db-*
+.venv/
+node_modules/
+dist/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.tsbuildinfo
+.DS_Store
+.tools/
